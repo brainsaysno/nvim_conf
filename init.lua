@@ -227,6 +227,8 @@ local config = {
       ["<leader>rf"] = { "<cmd>RunFile<cr>", desc = "Run file" },
       ["<leader>rc"] = { "<cmd>RunClose<cr>", desc = "Run close" },
       ["<leader>e"] = { "<cmd>Telescope file_browser<cr>", desc = "Toggle file picker" },
+      ["<leader>q"] = false,
+      -- ["<leader>qp"] = {"<"}
     },
     t = {
       -- setting a mapping to false will disable it
@@ -237,10 +239,13 @@ local config = {
   plugins = {
     init = {
 
-      { "Mofiqul/dracula.nvim" },
+      -- { "Mofiqul/dracula.nvim" },
       { "aktersnurra/no-clown-fiesta.nvim" },
 
-      { "rose-pine/neovim",                name = "rose-pine" },
+      -- {
+      --   "rose-pine/neovim",
+      --   name = "rose-pine"
+      -- },
 
       {
         "kylechui/nvim-surround",
@@ -287,6 +292,49 @@ local config = {
           }
         end,
         ft = { "markdown" },
+      },
+
+      -- { 'quarto-dev/quarto-nvim',
+      --   requires = {
+      --     'hrsh7th/nvim-cmp',
+      --     'neovim/nvim-lspconfig',
+      --     'nvim-treesitter/nvim-treesitter',
+      --     { 'jmbuhr/otter.nvim' },
+      --   },
+      --   config = function()
+      --     vim.opt.conceallevel = 1
+      --
+      --     -- disable conceal in markdown/quarto
+      --     vim.g['pandoc#syntax#conceal#use'] = false
+      --
+      --     -- embeds are already handled by treesitter injectons
+      --     vim.g['pandoc#syntax#codeblocks#embeds#use'] = false
+      --
+      --     vim.g['pandoc#syntax#conceal#blacklist'] = { 'codeblock_delim', 'codeblock_start' }
+      --
+      --     -- but allow some types of conceal in math reagions:
+      --     -- a=accents/ligatures d=delimiters m=math symbols
+      --     -- g=Greek  s=superscripts/subscripts
+      --     vim.g['tex_conceal'] = 'gm'
+      --
+      --     require 'quarto'.setup {
+      --       lspFeatures = {
+      --         enabled = true,
+      --         languages = { 'r', 'python', 'julia' },
+      --         diagnostics = {
+      --           enabled = true,
+      --           triggers = { "BufWrite" }
+      --         },
+      --         completion = {
+      --           enabled = true
+      --         }
+      --       }
+      --     }
+      --   end
+      -- },
+      --
+      {
+        'ekickx/clipboard-image.nvim',
       },
 
       { 'CRAG666/code_runner.nvim',
@@ -370,6 +418,16 @@ local config = {
       config[2] = nil
       return config
     end,
+    treesitter = {
+      ensure_installed = { 'python', 'markdown', 'markdown_inline', 'julia', 'yaml', 'lua', 'vim', 'query', 'help', 'latex' },
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = { 'markdown' },
+      }
+
+    },
+    ['nvim-autopairs'] = function()
+    end
   },
   -- LuaSnip Options
   -- CMP Source Priorities
@@ -378,6 +436,7 @@ local config = {
   -- The value can also be set to a boolean for disabling default sources:
   -- false == disabled
   -- true == 1000
+
   cmp = {
     source_priority = {
       nvim_lsp = 1000,
@@ -388,6 +447,8 @@ local config = {
   },
   polish = function()
     require 'telescope'.load_extension 'file_browser'
+
+
     -- local function download_asset(table)
     --   local http = require
     --
