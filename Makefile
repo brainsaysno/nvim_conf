@@ -1,4 +1,4 @@
-run:
+run: build
 	docker run -ti --rm nvconf 
 
 build:
