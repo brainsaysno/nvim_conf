@@ -14,7 +14,7 @@ def main():
 
     # Clone config repo
     run(["git", "clone", CONFIG_REPO_URL, "~/.config/nvim/lua/user"])
-    run(["ln", "-s ~/.config/nvim/lua/user/ftplugin", "~/.config/nvim/ftplugins"])
+    run(["ln", "-s", "~/.config/nvim/lua/user/ftplugin", "~/.config/nvim/ftplugins"])
 
 if __name__ == "__main__":
     main()
