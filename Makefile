@@ -1,2 +1,5 @@
 run:
-	docker run -ti --rm nvconf /bin/bash
+	docker run -ti --rm nvconf 
+
+build:
+	docker build -t nvconf - < Dockerfile

@@ -10,7 +10,7 @@ def main():
     run(["mv", "~/.local/share/nvim", "~/.local/share/nvim"])
 
     # Clone astronvim
-    run(["git", "clone", "--depth 1", "https://www.github.com/AstroNvim/AstroNvim", "~/.config/nvim"])
+    run(["git", "clone", "--depth", "1", "https://www.github.com/AstroNvim/AstroNvim", "~/.config/nvim"])
 
     # Clone config repo
     run(["git", "clone", CONFIG_REPO_URL, "~/.config/nvim/lua/user"])
