@@ -2,7 +2,8 @@
 
 local config = {
   -- Set colorscheme to use
-  colorscheme = "no-clown-fiesta",
+  -- colorscheme = "no-clown-fiesta",
+  colorscheme = "minimal-base16",
   -- Set vim options here (vim.<first_key>.<second_key> = value)
   options = {
     opt = {
@@ -103,6 +104,15 @@ local config = {
     vim.keymap.set('n', '<C-j>', wrap(window_move, 'j'), { silent = true })
     vim.keymap.set('n', '<C-k>', wrap(window_move, 'k'), { silent = true })
     vim.keymap.set('n', '<C-l>', wrap(window_move, 'l'), { silent = true })
+
+    local notify = vim.notify
+    vim.notify = function(msg, ...)
+      if msg:match("warning: multiple different client offset_encodings") then
+        return
+      end
+
+      notify(msg, ...)
+    end
   end,
 }
 

@@ -1,14 +1,29 @@
 return {
-  { "aktersnurra/no-clown-fiesta.nvim" },
+
+  { "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require'nvim-treesitter.configs'.setup {
+        ensure_installed = {
+          "cpp",
+          "lua",
+          "python",
+          "typescript",
+          "tsx"
+        }
+      }
+    end
+  },
+
+  { "rcarriga/nvim-notify", enabled=false },
+  { "Yazeed1s/minimal.nvim" },
   {
     "kylechui/nvim-surround",
-    -- tag = "*",
+    version = "*",
+    event = "VeryLazy",
     config = function()
       require("nvim-surround").setup {}
     end
   },
-  ["nvim-telescope/telescope-fzf-native.nvim"] = { disable = true },
-  ["rcarriga/nvim-notify"] = { disable = true },
   {
     "goolord/alpha-nvim",
     opts = function(_, dashboard)
@@ -22,7 +37,7 @@ return {
         "⠀⠀⠀⠀⢀⣴⢟⣼⣿⣿⣿⣿⣿⣿⣎⣿⡻⣿⣿⣿⣿⣿⣿⣷⡄⠘⢿⣿⣿⣿⠿⠿⠿⢿⣿⣿⡿⢣⣿⣿⣿⣿⣿⣿⣵⡿⠟⢁⣼⣿⣿⣿⣿⣿⣿⣧⡀⠀⠀⠀⠀⠀",
         "⠀⠀⠀⢠⣾⣣⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡙⠟⠋⣉⣠⣤⣤⣤⣤⣤⣼⣶⣶⠶⠿⠷⠶⣤⣤⣤⣤⣤⣤⣬⡙⢿⣿⣿⢖⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀⠀",
         "⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢛⣡⣶⡿⠋⠁⠀⠀⠀⠀⠀⠀⢸⡿⠀⠀⠀⠀⠀⠀⠉⠉⠁⢹⠉⠛⢷⣬⡁⠨⢾⡿⣫⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀",
-        "⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⢋⣡⡶⠟⠋⠀⣧⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠂⠀⠀⠈⠻⢷⣤⣺⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀",
+        "⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⢋⣡⡶⠟⠋⠀⣧⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡄⠀⠀⠈⠻⢷⣤⣺⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀",
         "⢰⣿⣿⣿⣿⡙⠿⠿⠿⣟⣩⡴⣾⠛⠁⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠈⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠀⠀⠀⠀⢀⡾⠋⠛⢾⣝⡻⣿⣿⣿⣿⣿⣿⣿⣷⣻⣇⠀",
         "⢸⣿⣿⣿⣿⣶⣶⣿⣿⣷⣶⣶⣿⣆⠀⠀⠀⠀⠀⣿⣷⣶⣶⣶⣶⣶⣶⣶⡶⢿⣶⣶⣶⣶⣦⣤⣤⣤⣴⡏⠀⠀⠀⣠⡿⢥⣀⡀⢀⣨⡟⠳⢭⣛⠻⠿⢿⣿⣿⡏⣿⡄",
         "⠈⠻⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⢸⣿⣿⣿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣌⡻⣿⡉⠈⡇⠀⢀⣼⠋⠀⠀⠈⠻⡿⠋⠉⠓⢲⣾⣻⣷⣶⣦⣽⣾⠟⠁",
@@ -55,9 +70,7 @@ return {
     ft = { "markdown" },
   },
   {
-    'ekickx/clipboard-image.nvim',
-  },
-  { 'CRAG666/code_runner.nvim',
+    'CRAG666/code_runner.nvim',
     config = function()
       require('code_runner').setup({
         filetype = {
@@ -78,7 +91,8 @@ return {
       "nvim-lua/plenary.nvim"
     }
   },
-  { -- override nvim-autopairs plugin
+  {
+    -- override nvim-autopairs plugin
     "windwp/nvim-autopairs",
     config = function(plugin, opts)
       -- run default AstroNvim config
@@ -92,7 +106,7 @@ return {
   {
     "L3MON4D3/LuaSnip",
     config = function(plugin, opts)
-      require "plugins.configs.luasnip" (plugin, opts) -- include the default astronvim config that calls the setup call
+      require "plugins.configs.luasnip" (plugin, opts)                                    -- include the default astronvim config that calls the setup call
       require("luasnip.loaders.from_lua").lazy_load { paths = { "./lua/user/snippets" } } -- load snippets paths
       require 'luasnip'.config.set_config {
         enable_autosnippets = true,
@@ -100,4 +114,49 @@ return {
       }
     end,
   },
+  {
+    "AstroNvim/astrocommunity",
+    { import = "astrocommunity.completion.copilot-lua-cmp" },
+    { import = "astrocommunity.test.neotest" },
+    { import = "astrocommunity.pack.rust" },
+    -- { import = "astrocommunity.pack.java" },
+    -- { import = "astrocommunity.pack.tailwindcss" },
+    -- { import = "astrocommunity.pack.typescript" },
+    -- {
+    --   "neotest",
+    --   opts = {
+    --     adapters = {
+    --       require 'neotest-haskell',
+    --       require 'neotest-python',
+    --       require 'neotest-rust',
+    --       require 'neotest-jest',
+    --       require 'neotest-vitest',
+    --     },
+    --     dependencies = {
+    --       'mrcjkb/neotest-haskell',
+    --       'nvim-neotest/neotest-python',
+    --       'rouge8/neotest-rust',
+    --       'haydenmeade/neotest-jest',
+    --       'marilari88/neotest-vitest',
+    --     }
+    --   },
+    -- }
+  },
+
+  {
+    'mrcjkb/haskell-tools.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim', -- optional
+    },
+    branch = '1.x.x',                  -- recommended
+  },
+  {
+    "folke/trouble.nvim",
+    requires = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {}
+    end
+  },
+
 }
