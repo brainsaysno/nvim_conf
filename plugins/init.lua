@@ -1,5 +1,7 @@
 return {
 
+  {"rebelot/kanagawa.nvim"},
+
   { "nvim-treesitter/nvim-treesitter",
     config = function()
       require'nvim-treesitter.configs'.setup {
@@ -7,15 +9,24 @@ return {
           "cpp",
           "lua",
           "python",
+          "tsx",
+          "java",
+          "javascript",
           "typescript",
-          "tsx"
+          "tsx",
+          "markdown",
+          "markdown_inline",
+          "yaml",
+          "toml",
+          "rust",
+          "latex",
         }
       }
     end
   },
 
   { "rcarriga/nvim-notify", enabled=false },
-  { "Yazeed1s/minimal.nvim" },
+
   {
     "kylechui/nvim-surround",
     version = "*",
@@ -24,10 +35,11 @@ return {
       require("nvim-surround").setup {}
     end
   },
+  
   {
     "goolord/alpha-nvim",
     opts = function(_, dashboard)
-      dashboard.section.header.opts.hl = "Error"
+      dashboard.section.header.opts.hl = "PreProc"
       dashboard.section.header.val = {
         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣤⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣠⣤⣤⣤⣤⣄⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⠾⣿⣿⣿⣿⣿⣿⣍⣙⠛⠻⠷⣶⣦⣤⣤⣤⣴⡶⠾⠛⢛⣉⣭⣽⣿⣿⣿⣿⣟⡛⠷⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
@@ -59,6 +71,7 @@ return {
       dashboard.section.footer.val = ""
     end,
   },
+
   {
     "iamcco/markdown-preview.nvim",
     run = "cd app && npm install",
@@ -69,6 +82,7 @@ return {
     end,
     ft = { "markdown" },
   },
+
   {
     'CRAG666/code_runner.nvim',
     config = function()
@@ -84,6 +98,7 @@ return {
     end,
     requires = 'nvim-lua/plenary.nvim'
   },
+
   {
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = {
@@ -91,6 +106,7 @@ return {
       "nvim-lua/plenary.nvim"
     }
   },
+  
   {
     -- override nvim-autopairs plugin
     "windwp/nvim-autopairs",
@@ -103,6 +119,7 @@ return {
       npairs.add_rule(Rule("$", "$", { "markdown", "tex" }))
     end,
   },
+
   {
     "L3MON4D3/LuaSnip",
     config = function(plugin, opts)
@@ -114,33 +131,12 @@ return {
       }
     end,
   },
+
   {
     "AstroNvim/astrocommunity",
     { import = "astrocommunity.completion.copilot-lua-cmp" },
     { import = "astrocommunity.test.neotest" },
     { import = "astrocommunity.pack.rust" },
-    -- { import = "astrocommunity.pack.java" },
-    -- { import = "astrocommunity.pack.tailwindcss" },
-    -- { import = "astrocommunity.pack.typescript" },
-    -- {
-    --   "neotest",
-    --   opts = {
-    --     adapters = {
-    --       require 'neotest-haskell',
-    --       require 'neotest-python',
-    --       require 'neotest-rust',
-    --       require 'neotest-jest',
-    --       require 'neotest-vitest',
-    --     },
-    --     dependencies = {
-    --       'mrcjkb/neotest-haskell',
-    --       'nvim-neotest/neotest-python',
-    --       'rouge8/neotest-rust',
-    --       'haydenmeade/neotest-jest',
-    --       'marilari88/neotest-vitest',
-    --     }
-    --   },
-    -- }
   },
 
   {
@@ -151,6 +147,7 @@ return {
     },
     branch = '1.x.x',                  -- recommended
   },
+
   {
     "folke/trouble.nvim",
     requires = "nvim-tree/nvim-web-devicons",

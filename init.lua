@@ -2,8 +2,7 @@
 
 local config = {
   -- Set colorscheme to use
-  -- colorscheme = "no-clown-fiesta",
-  colorscheme = "minimal-base16",
+  colorscheme = "kanagawa-dragon",
   -- Set vim options here (vim.<first_key>.<second_key> = value)
   options = {
     opt = {
@@ -13,6 +12,7 @@ local config = {
       spell = false,
       signcolumn = "auto",
       wrap = false,
+      cmdheight = 1,
     },
     g = {
       mapleader = " ",
@@ -29,54 +29,22 @@ local config = {
     virtual_text = true,
     underline = true,
   },
-  -- ['telescope'] = {
-  --   defaults = {
-  --     preview = {
-  --       mime_hook = function(f, bufnr, opts)
-  --         local is_image = function(filepath)
-  --           local image_extensions = { 'png', 'jpg', 'jpeg', 'gif', 'webp', 'ico' } -- Supported image formats
-  --           local split_path = vim.split(filepath:lower(), '.', { plain = true })
-  --           local extension = split_path[#split_path]
-  --           return vim.tbl_contains(image_extensions, extension)
-  --         end
-  --         if is_image(f) then
-  --           local term = vim.api.nvim_open_term(bufnr, {})
-  --           local function send_output(_, data, _)
-  --             for _, d in ipairs(data) do
-  --               vim.api.nvim_chan_send(term, d .. '\r\n')
-  --             end
-  --           end
-  --           vim.fn.jobstart(
-  --             {
-  --               'viu', f -- Terminal image viewer command
-  --             },
-  --             { on_stdout = send_output, stdout_buffered = true, pty = true })
-  --         else
-  --           require("telescope.previewers.utils").set_preview_message(bufnr, opts.winid, "Binary cannot be previewed")
-  --         end
-  --       end
-  --     }
-  --   },
-  --   extensions = {
-  --     file_browser = {
-  --       theme = "ivy",
-  --       hijack_netrw = true,
-  --     }
-  --   }
-  -- },
-  -- heirline = function(config)
-  --   config[2] = nil
-  --   return config
-  -- end,
-  -- treesitter = {
-  --   ensure_installed = { 'python', 'markdown', 'markdown_inline', 'julia', 'yaml', 'lua', 'vim', 'query', 'help', 'latex' },
-  --   highlight = {
-  --     enable = true,
-  --     additional_vim_regex_highlighting = { 'markdown' },
-  --   }
-  --
-  -- },
 
+  -- lsp = {
+  --   setup_handlers = {
+  --     -- add custom handler
+  --     tsserver = function(_, opts) require("typescript").setup { server = opts } end
+  --   }
+  -- },
+  -- plugins = {
+  --   "jose-elias-alvarez/typescript.nvim", -- add lsp plugin
+  --   {
+  --     "williamboman/mason-lspconfig.nvim",
+  --     opts = {
+  --       ensure_installed = { "tsserver" }, -- automatically install lsp
+  --     },
+  -- },
+  --
   polish = function()
     require 'telescope'.load_extension 'file_browser'
 

@@ -16,4 +16,5 @@ WORKDIR /home/myuser
 CMD mkdir -p ~/.config && \
     wget https://raw.githubusercontent.com/brainsaysno/nvim_conf/main/copyconf.py && \
     python3 copyconf.py && \
-    nvim
+    nvim && /bin/bash
+
